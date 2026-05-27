@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ellis — The moment everything becomes clear.</title>
+  <meta name="description" content="Ellis is an AI-powered home selling platform that helps you understand exactly how to sell your home — then delivers the services to do it. List with AI. Keep more equity.">
+  <meta property="og:title" content="Ellis — The moment everything becomes clear.">
+  <meta property="og:description" content="Sell your home with AI. Know your options. Keep more equity.">
+  <meta property="og:url" content="https://ellissays.com">
+  <link rel="canonical" href="https://ellissays.com">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Page-specific styles */
+    .hero__visual { position: relative; }
+
+    .float-card {
+      position: absolute;
+      background: var(--white);
+      border-radius: 10px;
+      padding: 14px 18px;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--rule);
+      font-size: 13px;
+      white-space: nowrap;
+      animation: floatCard 4s ease-in-out infinite;
+    }
+    .float-card__label { color: var(--text-light); font-size: 11px; margin-bottom: 2px; font-family: var(--font-mono); }
+    .float-card__value { font-weight: 500; color: var(--navy); }
+    .float-card--1 { top: -24px; left: -32px; animation-delay: 0s; }
+    .float-card--2 { bottom: 60px; left: -48px; animation-delay: 1.3s; }
+    .float-card--3 { top: 30px; right: -20px; animation-delay: 0.7s; }
+
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-8px); }
+    }
+
+    .entry-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--rule);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--rule);
+    }
+    .entry-card {
+      background: var(--white);
+      padding: 36px 32px;
+      transition: background 0.2s;
+    }
+    .entry-card:hover { background: var(--sand); }
+    .entry-card__num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--clay);
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+    .entry-card__title { font-size: 18px; font-weight: 500; color: var(--navy); margin-bottom: 10px; }
+    .entry-card__body { font-size: 14px; color: var(--text-mid); line-height: 1.6; }
+
+    .how-strip {
+      display: flex;
+      gap: 0;
+      counter-reset: step;
+    }
+    .how-step {
+      flex: 1;
+      padding: 40px 32px;
+      position: relative;
+      border-right: 1px solid var(--rule);
+    }
+    .how-step:last-child { border-right: none; }
+    .how-step__num {
+      font-family: var(--font-display);
+      font-size: 52px;
+      font-weight: 400;
+      color: var(--sand-dark);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .how-step__title { font-size: 16px; font-weight: 500; color: var(--navy); margin-bottom: 8px; }
+    .how-step__body { font-size: 14px; color: var(--text-mid); line-height: 1.6; }
+
+    .testimonial {
+      background: var(--navy);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .testimonial::before {
+      content: '\201C';
+      font-family: var(--font-display);
+      font-size: 200px;
+      color: rgba(255,255,255,0.04);
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      line-height: 1;
+    }
+    .testimonial__text {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-style: italic;
+      line-height: 1.5;
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .testimonial__attr { font-size: 13px; color: rgba(255,255,255,0.5); }
+    .testimonial__attr strong { color: rgba(255,255,255,0.8); font-weight: 500; }
+
+    #waitlist {
+      background: var(--navy);
+      color: var(--white);
+      padding: var(--section-pad) 0;
+    }
+    #waitlist .display { color: var(--white); }
+    #waitlist .lead { color: rgba(255,255,255,0.65); }
+
+    .waitlist-box {
+      max-width: 560px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+    }
+    .waitlist-box .form-input { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); color: var(--white); }
+    .waitlist-box .form-input::placeholder { color: rgba(255,255,255,0.35); }
+    .waitlist-box .form-input:focus { border-color: var(--clay-light); background: rgba(255,255,255,0.12); }
+    .waitlist-box .form-note { color: rgba(255,255,255,0.4); }
+    .waitlist-box select.form-input option { background: var(--navy); }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo">Ellis<span>.</span></a>
+    <div class="nav__links">
+      <a href="index.html" class="active">Home</a>
+      <a href="how-it-works.html">How It Works</a>
+      <a href="for-investors.html">For Investors</a>
+      <a href="for-agents.html">For Agents</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="#waitlist" class="nav__cta">Get Early Access</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <div class="grid-2">
+      <div class="hero__content">
+        <div class="hero__eyebrow">
+          <span class="overline">AI-Powered Home Selling</span>
+        </div>
+        <h1 class="hero__title display display-xl animate-up">
+          Sell your home<br>with <em>AI</em> on<br>your side.
+        </h1>
+        <p class="hero__sub lead animate-up">
+          Ellis is a knowledgeable friend who knows everything about real estate — one who gives you the honest picture, helps you decide what's right for your situation, and delivers the services to make it happen.
+        </p>
+        <div class="hero__actions animate-up">
+          <a href="#waitlist" class="btn btn--primary btn--lg">Get Early Access</a>
+          <a href="how-it-works.html" class="btn btn--outline btn--lg">See How It Works</a>
+        </div>
+        <div class="hero__proof animate-up">
+          <div class="hero__proof-item">
+            <div class="hero__proof-number"><em>1.5%</em></div>
+            <div class="hero__proof-label">AI listing commission<br>vs. 2.5–3% traditional</div>
+          </div>
+          <div class="hero__proof-item">
+            <div class="hero__proof-number">4</div>
+            <div class="hero__proof-label">Independent valuations<br>side-by-side</div>
+          </div>
+          <div class="hero__proof-item">
+            <div class="hero__proof-number">5</div>
+            <div class="hero__proof-label">Paths to market —<br>Ellis finds yours</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual panel -->
+      <div class="hero__visual">
+        <div class="float-card float-card--1">
+          <div class="float-card__label">Ellis says</div>
+          <div class="float-card__value">Your range: $384K – $408K</div>
+        </div>
+        <div class="float-card float-card--2">
+          <div class="float-card__label">Potential savings</div>
+          <div class="float-card__value">~$6,200 vs. traditional agent</div>
+        </div>
+        <div class="float-card float-card--3">
+          <div class="float-card__label">Recommended path</div>
+          <div class="float-card__value">✦ AI-Assisted Listing</div>
+        </div>
+        <div class="val-panel">
+          <div class="val-panel__header">
+            <h3>Your Home Valuation</h3>
+            <div class="val-panel__address">123 Maple Street, Daytona Beach, FL 32118</div>
+          </div>
+          <div class="val-panel__row">
+            <div class="val-source">
+              <strong>Zillow Zestimate</strong>
+              Updated daily · 94% accuracy on-market
+            </div>
+            <div>
+              <div class="val-amount">$391,000</div>
+              <div class="val-range">±$18K range</div>
+            </div>
+          </div>
+          <div class="val-panel__row">
+            <div class="val-source">
+              <strong>HouseCanary AVM</strong>
+              ±2.5% accuracy · 36-mo forecast available
+            </div>
+            <div>
+              <div class="val-amount">$401,000</div>
+              <div class="val-range">±$10K range</div>
+            </div>
+          </div>
+          <div class="val-panel__row">
+            <div class="val-source">
+              <strong>ATTOM Comparable Sales</strong>
+              12 comps · 0.5mi radius · 90 days
+            </div>
+            <div>
+              <div class="val-amount">$394,000</div>
+              <div class="val-range">±$12K range</div>
+            </div>
+          </div>
+          <div class="val-panel__row">
+            <div class="val-source">
+              <strong>Cotality Market Index</strong>
+              Trend-adjusted for current local conditions
+            </div>
+            <div>
+              <div class="val-amount">$396,000</div>
+              <div class="val-range">±$9K range</div>
+            </div>
+          </div>
+          <div class="val-panel__row val-panel__row--total">
+            <div class="val-source">
+              <strong>Ellis Recommended Range</strong>
+            </div>
+            <div>
+              <div class="val-amount">$384K – $408K</div>
+            </div>
+          </div>
+          <div class="val-panel__note">
+            Four independent systems. Four different answers. That spread is your pricing intelligence — and Ellis explains exactly what it means for your strategy.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Three entry points -->
+<section class="section section--sand">
+  <div class="container">
+    <div class="text-center mb-48" data-reveal>
+      <span class="overline">Who Ellis Helps</span>
+      <h2 class="display display-md mt-16">Every seller starts somewhere different.<br>Ellis meets you there.</h2>
+    </div>
+    <div class="entry-grid" data-reveal data-delay="100">
+      <div class="entry-card">
+        <div class="entry-card__num">01</div>
+        <h3 class="entry-card__title">You want to sell with AI</h3>
+        <p class="entry-card__body">You've heard AI is changing real estate. You want to list your home, skip the traditional agent commission, and keep more equity. Ellis is your listing broker — the AI handles pricing, marketing, and offers.</p>
+      </div>
+      <div class="entry-card">
+        <div class="entry-card__num">02</div>
+        <h3 class="entry-card__title">You're not sure which way to go</h3>
+        <p class="entry-card__body">FSBO? Agent? Discount broker? Cash offer? You're doing the research and getting more confused. Ellis gives you an honest, data-driven answer in about five minutes — with net proceeds estimates for every path.</p>
+      </div>
+      <div class="entry-card">
+        <div class="entry-card__num">03</div>
+        <h3 class="entry-card__title">You need to move quickly</h3>
+        <p class="entry-card__body">A job relocation. A life change. A timeline that doesn't allow for months on the market. Ellis connects you with cash offers, local investors, and expedited paths — before your home ever hits the public market.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How it works strip -->
+<section class="section">
+  <div class="container">
+    <div class="text-center mb-48" data-reveal>
+      <span class="overline">The Process</span>
+      <h2 class="display display-md mt-16">Ellis in four steps.</h2>
+    </div>
+    <div class="how-strip" data-reveal data-delay="100" style="border: 1px solid var(--rule); border-radius: var(--radius-lg); overflow: hidden;">
+      <div class="how-step">
+        <div class="how-step__num">01</div>
+        <div class="how-step__title">Enter your address</div>
+        <p class="how-step__body">Ellis pulls four independent valuations in seconds and shows you the spread — honestly.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step__num">02</div>
+        <div class="how-step__title">Answer the trade-offs</div>
+        <p class="how-step__body">Four sliders. Real trade-offs. No free lunch options. Ellis finds out what you actually value.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step__num">03</div>
+        <div class="how-step__title">See your recommendation</div>
+        <p class="how-step__body">A side-by-side net proceeds comparison for every path. A clear recommendation. No pressure.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step__num">04</div>
+        <div class="how-step__title">Ellis does the rest</div>
+        <p class="how-step__body">Whether you list with AI, go FSBO, or get referred to an agent — Ellis delivers the services.</p>
+      </div>
+    </div>
+    <div class="text-center mt-32">
+      <a href="how-it-works.html" class="btn btn--outline">See the full process →</a>
+    </div>
+  </div>
+</section>
+
+<!-- The paths -->
+<section class="section section--sand">
+  <div class="container">
+    <div class="text-center mb-48" data-reveal>
+      <span class="overline">Five Paths to Market</span>
+      <h2 class="display display-md mt-16">Every option, laid out honestly.</h2>
+      <p class="lead mt-16" style="max-width: 540px; margin: 16px auto 0;">No single approach is right for every seller. Ellis shows you all of them — with real numbers — then helps you choose.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px;" data-reveal data-delay="100">
+      <div class="path-card path-card--featured" style="grid-column: span 1;">
+        <span class="path-card__badge badge--featured">★ Most Popular with Ellis</span>
+        <div class="path-card__icon">🤖</div>
+        <div class="path-card__title">AI-Assisted Listing</div>
+        <p class="path-card__body">Ellis acts as your listing broker. AI handles pricing, MLS listing, showings, and offers. Full market exposure. Fraction of the cost.</p>
+        <div class="path-card__price">Commission: <strong>1.5–2%</strong> vs. 2.5–3% traditional</div>
+      </div>
+      <div class="path-card">
+        <span class="path-card__badge badge--agent">Full-Service Agent</span>
+        <div class="path-card__icon">🤝</div>
+        <div class="path-card__title">Traditional Agent Referral</div>
+        <p class="path-card__body">Ellis matches you with three top local agents based on your price range, neighborhood, and property type. Then schedules your appointments.</p>
+        <div class="path-card__price">Ellis earns a referral fee. <strong>You get the best agent.</strong></div>
+      </div>
+      <div class="path-card">
+        <span class="path-card__badge badge--discount">Discount Broker</span>
+        <div class="path-card__icon">📋</div>
+        <div class="path-card__title">Discount Broker Referral</div>
+        <p class="path-card__body">Agent representation at a reduced commission. For sellers who want professional help without the full price tag.</p>
+        <div class="path-card__price">Typical commission: <strong>1–1.5%</strong> listing side</div>
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;" data-reveal data-delay="200">
+      <div class="path-card">
+        <span class="path-card__badge badge--fsbo">FSBO</span>
+        <div class="path-card__icon">📦</div>
+        <div class="path-card__title">For Sale By Owner</div>
+        <p class="path-card__body">You handle the sale. Ellis provides the tools — MLS listing, documents, eSign disclosures, photographer connections, and legal review access.</p>
+        <div class="path-card__price">Flat-fee packages from <strong>$149 – $999</strong></div>
+      </div>
+      <div class="path-card">
+        <span class="path-card__badge badge--ibuyer">Cash Offer</span>
+        <div class="path-card__icon">💰</div>
+        <div class="path-card__title">iBuyer / Cash Offer</div>
+        <p class="path-card__body">A direct cash offer, fast closing, no showings. Ellis checks availability for your property and market. When it's not available, we tell you clearly — so you don't have to go find out yourself.</p>
+        <div class="unavailable-banner">
+          <span>✕</span> Example: Not available for rural or unique properties
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pull quote -->
+<section class="section">
+  <div class="container">
+    <div style="max-width: 720px; margin: 0 auto;" data-reveal>
+      <p class="pull-quote">
+        "Ellis walked me through exactly what my options were. I didn't feel sold to. I felt like I finally understood what I was doing."
+      </p>
+      <p class="caption mt-16" style="padding-left: 28px;">The experience we're building toward — for every homeowner.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="section section--blue-pale">
+  <div class="container">
+    <div class="grid-4" data-reveal>
+      <div class="stat">
+        <div class="stat__number"><em>$65K</em></div>
+        <div class="stat__label">Median price gap between agent-assisted and FSBO sales (NAR 2025)</div>
+      </div>
+      <div class="stat">
+        <div class="stat__number">4</div>
+        <div class="stat__label">Independent valuation sources blended in the Ellis panel</div>
+      </div>
+      <div class="stat">
+        <div class="stat__number"><em>5 min</em></div>
+        <div class="stat__label">To get your full recommendation, valuation, and net proceeds comparison</div>
+      </div>
+      <div class="stat">
+        <div class="stat__number"><em>1.5%</em></div>
+        <div class="stat__label">AI-assisted listing commission — versus 2.5–3% traditional</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Waitlist -->
+<section id="waitlist">
+  <div class="container">
+    <div class="text-center mb-48" data-reveal>
+      <span class="overline" style="color: var(--clay-light);">Early Access</span>
+      <h2 class="display display-lg mt-16">Be first through the door.</h2>
+      <p class="lead mt-16">Ellis launches in Florida first. Join the waitlist and we'll reach out as soon as your market is live.</p>
+    </div>
+    <div class="waitlist-box" data-reveal data-delay="100">
+      <form id="waitlist-form" novalidate>
+        <div class="form-row mb-16">
+          <div class="form-group">
+            <label for="wl-name">Your name</label>
+            <input id="wl-name" name="name" type="text" class="form-input" placeholder="First and last name" required>
+          </div>
+          <div class="form-group">
+            <label for="wl-email">Email address</label>
+            <input id="wl-email" name="email" type="email" class="form-input" placeholder="you@example.com" required>
+          </div>
+        </div>
+        <div class="form-group mb-24">
+          <label for="wl-type">I'm interested as a...</label>
+          <select id="wl-type" name="type" class="form-input form-select">
+            <option value="">Select one</option>
+            <option value="homeowner">Homeowner planning to sell</option>
+            <option value="investor">Real estate investor / flipper</option>
+            <option value="agent">Real estate agent</option>
+            <option value="other">Something else</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn--primary btn--lg w-full">Join the Waitlist →</button>
+        <p class="form-note text-center mt-16">No spam. No pressure. Just an early heads-up when Ellis is ready in your market.</p>
+      </form>
+      <div class="success-msg" id="waitlist-success">
+        ✓ &nbsp;You're on the list. We'll be in touch when Ellis launches in your market.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo">Ellis<span>.</span></div>
+        <div class="footer__tagline">The moment everything becomes clear.</div>
+        <p style="font-size: 13px; line-height: 1.6;">An AI-powered home selling platform and licensed real estate brokerage. Honest data. Every option. No agenda.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Platform</h4>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="how-it-works.html#paths">The Five Paths</a>
+        <a href="how-it-works.html#valuation">Valuation Panel</a>
+        <a href="index.html#waitlist">Early Access</a>
+      </div>
+      <div class="footer__col">
+        <h4>Partners</h4>
+        <a href="for-investors.html">For Investors</a>
+        <a href="for-agents.html">For Agents</a>
+        <a href="contact.html">Get in Touch</a>
+      </div>
+      <div class="footer__col">
+        <h4>Company</h4>
+        <a href="contact.html">Contact</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Licensing</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Ellis. Licensed Real Estate Brokerage. All rights reserved.</span>
+      <div style="display: flex; gap: 24px;">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Licensing</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
