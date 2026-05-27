@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Try Ellis — See What Your Home Is Worth</title>
+  <meta name="description" content="Enter your address, get independent valuations, tell Ellis what matters most, and see your personalised path recommendation.">
+
+  <link rel="canonical" href="https://ellissays.com/advisor.html">
+
+  <meta property="og:type"         content="website">
+  <meta property="og:site_name"    content="Ellis">
+  <meta property="og:url"          content="https://ellissays.com/advisor.html">
+  <meta property="og:title"        content="Try Ellis — See What Your Home Is Worth">
+  <meta property="og:description"  content="Enter your address, get independent valuations, tell Ellis what matters most, and see your path recommendation.">
+  <meta property="og:image"        content="https://ellissays.com/og-image.png">
+  <meta property="og:image:width"  content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt"    content="Ellis — The moment everything becomes clear.">
+  <meta property="og:locale"       content="en_US">
+
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:site"        content="@ellissays">
+  <meta name="twitter:title"       content="Try Ellis — See What Your Home Is Worth">
+  <meta name="twitter:description" content="Enter your address, get independent valuations, tell Ellis what matters most, and see your path recommendation.">
+  <meta name="twitter:image"       content="https://ellissays.com/og-image.png">
+  <meta name="twitter:image:alt"   content="Ellis — AI-powered home selling platform">
+
+  <link rel="icon"             type="image/x-icon"         href="favicon.ico">
+  <link rel="icon"             type="image/png" sizes="16x16"   href="ellis-16.png">
+  <link rel="icon"             type="image/png" sizes="32x32"   href="ellis-32.png">
+  <link rel="icon"             type="image/png" sizes="48x48"   href="ellis-48.png">
+  <link rel="apple-touch-icon" sizes="180x180"              href="ellis-180.png">
+  <link rel="icon"             type="image/png" sizes="192x192" href="ellis-192.png">
+  <link rel="icon"             type="image/png" sizes="512x512" href="ellis-512.png">
+
+  <meta name="theme-color" content="#1C2B3A">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KGTZW44DQ8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KGTZW44DQ8');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── Step progress indicator ───────────────────── */
+    .step-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 48px;
+    }
+    .step-pip {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .step-pip__circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--sand-dark);
+      color: var(--text-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      transition: background 0.3s, color 0.3s;
+    }
+    .step-pip__label {
+      font-size: 11px;
+      color: var(--text-light);
+      font-family: var(--font-mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .step-pip.active .step-pip__circle  { background: var(--navy); color: var(--white); }
+    .step-pip.done .step-pip__circle    { background: var(--blue); color: var(--white); }
+    .step-pip.active .step-pip__label,
+    .step-pip.done .step-pip__label     { color: var(--navy); }
+    .step-connector {
+      width: 56px;
+      height: 1.5px;
+      background: var(--rule);
+      margin: 0 8px;
+      margin-bottom: 18px;
+      flex-shrink: 0;
+      transition: background 0.3s;
+    }
+    .step-connector.done { background: var(--blue); }
+
+    /* ── Loading spinner ───────────────────────────── */
+    .loading-bar { display: none; text-align: center; padding: 56px 0; }
+    .loading-bar.visible { display: block; }
+    .spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid var(--rule);
+      border-top-color: var(--navy);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-bar p { font-size: 14px; color: var(--text-mid); font-family: var(--font-mono); letter-spacing: 0.06em; }
+
+    /* ── Error banner ──────────────────────────────── */
+    .error-banner {
+      display: none;
+      background: #FEF2F2;
+      border: 1px solid #FECACA;
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-size: 14px;
+      color: #DC2626;
+      margin-bottom: 20px;
+    }
+    .error-banner.visible { display: block; }
+
+    /* ── Advisor card shell ────────────────────────── */
+    .advisor-card {
+      max-width: 640px;
+      margin: 0 auto;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--rule);
+      box-shadow: var(--shadow-md);
+      padding: 44px;
+    }
+    .advisor-card h2 {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .advisor-card .subtitle {
+      font-size: 14px;
+      color: var(--text-mid);
+      margin-bottom: 32px;
+      line-height: 1.65;
+    }
+
+    /* ── Valuation sources ─────────────────────────── */
+    .val-source-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--rule);
+      gap: 12px;
+    }
+    .val-source-row:last-child { border-bottom: none; }
+    .val-source-name  { font-size: 14px; font-weight: 500; color: var(--navy); }
+    .val-source-meta  { font-size: 12px; color: var(--text-light); margin-top: 2px; }
+    .val-source-attr  { font-size: 10px; color: var(--clay); font-style: italic; margin-top: 3px; }
+    .val-source-amount {
+      font-family: var(--font-mono);
+      font-size: 17px;
+      color: var(--navy);
+      text-align: right;
+      white-space: nowrap;
+    }
+    .val-source-range  { font-size: 11px; color: var(--text-light); text-align: right; margin-top: 2px; }
+
+    .ellis-range-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--blue-pale);
+      border-radius: 8px;
+      padding: 18px 22px;
+      margin-top: 20px;
+    }
+    .ellis-range-box__label { font-size: 13px; font-weight: 500; color: var(--blue); }
+    .ellis-range-box__value { font-family: var(--font-mono); font-size: 20px; color: var(--blue); }
+    .ellis-range-note { font-size: 12px; color: var(--text-mid); font-style: italic; margin-top: 10px; line-height: 1.55; }
+
+    .property-facts-bar {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding: 14px 0 0;
+      margin-top: 4px;
+    }
+    .property-fact { font-size: 13px; color: var(--text-mid); }
+    .property-fact strong { color: var(--navy); }
+
+    /* ── Sliders ───────────────────────────────────── */
+    .advisor-slider-row { margin-bottom: 28px; }
+    .advisor-slider-row:last-of-type { margin-bottom: 0; }
+    .slider-label-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .slider-name { font-size: 14px; font-weight: 500; color: var(--navy); }
+    .slider-val  { font-family: var(--font-mono); font-size: 12px; color: var(--text-light); }
+    .slider-ends {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-light);
+      margin-top: 6px;
+    }
+
+    input[type="range"].advisor-range {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(
+        to right,
+        var(--blue) 0%,
+        var(--blue) var(--fill, 50%),
+        var(--sand-dark) var(--fill, 50%),
+        var(--sand-dark) 100%
+      );
+      border-radius: 100px;
+      outline: none;
+      cursor: pointer;
+    }
+    input[type="range"].advisor-range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2.5px solid var(--blue);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+      cursor: pointer;
+    }
+    input[type="range"].advisor-range:focus::-webkit-slider-thumb { border-color: var(--clay); }
+    input[type="range"].advisor-range::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2.5px solid var(--blue);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+      cursor: pointer;
+    }
+
+    /* ── Net proceeds preview ──────────────────────── */
+    .proceeds-preview {
+      background: var(--sand);
+      border-radius: 8px;
+      padding: 18px 22px;
+      margin-top: 28px;
+      border: 1px solid var(--rule);
+    }
+    .proceeds-preview__label {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 14px;
+    }
+    .proceeds-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 0;
+      font-size: 13px;
+    }
+    .proceeds-row__name   { color: var(--text-mid); }
+    .proceeds-row__amount { font-family: var(--font-mono); font-size: 14px; color: var(--navy); }
+    .proceeds-row--top .proceeds-row__name   { color: var(--navy); font-weight: 500; }
+    .proceeds-row--top .proceeds-row__amount { color: var(--blue); font-size: 16px; }
+
+    /* ── Recommendation output ─────────────────────── */
+    .rec-wrap { max-width: 720px; margin: 0 auto; }
+    .rec-header {
+      background: var(--navy);
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      padding: 36px 40px;
+      color: var(--white);
+    }
+    .rec-header__eyebrow {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--clay-light);
+      margin-bottom: 10px;
+    }
+    .rec-header__path {
+      font-family: var(--font-display);
+      font-size: 30px;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .rec-header__reason { font-size: 15px; color: rgba(255,255,255,0.72); line-height: 1.65; }
+
+    .rec-body {
+      border: 1px solid var(--rule);
+      border-top: none;
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      overflow: hidden;
+    }
+    .honesty-note {
+      padding: 14px 24px;
+      background: var(--sand);
+      border-bottom: 1px solid var(--rule);
+      font-size: 13px;
+      color: var(--text-mid);
+      font-style: italic;
+    }
+    .honesty-note strong { color: var(--navy); font-style: normal; }
+
+    .path-result-card {
+      display: grid;
+      grid-template-columns: 32px 1fr auto;
+      gap: 16px;
+      align-items: start;
+      padding: 22px 24px;
+      border-bottom: 1px solid var(--rule);
+      background: var(--white);
+    }
+    .path-result-card:last-child { border-bottom: none; }
+    .path-result-card--rec { background: var(--blue-pale); }
+    .path-icon { font-size: 22px; padding-top: 2px; }
+    .path-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 100px;
+      margin-bottom: 6px;
+      background: var(--clay);
+      color: var(--white);
+    }
+    .path-badge--other { background: var(--sand-dark); color: var(--text-mid); }
+    .path-name  { font-size: 15px; font-weight: 500; color: var(--navy); margin-bottom: 3px; }
+    .path-meta  { font-size: 12px; color: var(--text-light); margin-bottom: 6px; }
+    .path-note  { font-size: 13px; color: var(--text-mid); line-height: 1.55; font-style: italic; }
+    .path-pros-cons { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 4px 12px; }
+    .path-pros-cons span { font-size: 12px; color: var(--text-mid); }
+    .path-pros-cons span.pro::before { content: '✓ '; color: #2D6A35; }
+    .path-pros-cons span.con::before { content: '✗ '; color: #DC2626; }
+    .path-avail { font-size: 12px; color: var(--clay); margin-top: 6px; }
+    .path-proceeds { text-align: right; flex-shrink: 0; min-width: 110px; }
+    .path-proceeds__lbl {
+      font-size: 10px;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-light);
+      margin-bottom: 4px;
+    }
+    .path-proceeds__amt {
+      font-family: var(--font-mono);
+      font-size: 17px;
+      color: var(--navy);
+    }
+    .path-proceeds__amt--rec { color: var(--blue); font-size: 20px; }
+    .path-proceeds__detail { font-size: 11px; color: var(--text-light); margin-top: 3px; }
+
+    .rec-footer {
+      padding: 28px 24px;
+      text-align: center;
+      background: var(--white);
+      border-top: 1px solid var(--rule);
+    }
+    .rec-footer p { font-size: 14px; color: var(--text-mid); margin-bottom: 18px; }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 680px) {
+      .advisor-card { padding: 28px 20px; }
+      .step-connector { width: 28px; }
+      .rec-header { padding: 28px 24px; }
+      .path-result-card { grid-template-columns: 28px 1fr; }
+      .path-proceeds { grid-column: 2; margin-top: -4px; text-align: left; }
+      .path-proceeds__amt--rec { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo">Ellis<span>.</span></a>
+    <div class="nav__links">
+      <a href="index.html">Home</a>
+      <a href="how-it-works.html">How It Works</a>
+      <a href="for-investors.html">For Investors</a>
+      <a href="for-agents.html">For Agents</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="advisor.html" class="nav__cta">Try Ellis</a>
+    <button id="menu-btn" class="nav__hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div id="mobile-nav" class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="how-it-works.html">How It Works</a>
+    <a href="for-investors.html">For Investors</a>
+    <a href="for-agents.html">For Agents</a>
+    <a href="contact.html">Contact</a>
+    <a href="advisor.html" class="mobile-nav__cta">Try Ellis</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <span class="overline">Ellis Advisor</span>
+    <h1 class="display display-lg mt-16">See what Ellis says<br>about your home.</h1>
+    <p class="lead">Enter your address. Get independent valuations. Tell Ellis what matters most. See your path.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+
+    <!-- Step indicator -->
+    <div class="step-indicator" id="step-indicator">
+      <div class="step-pip active" id="pip-1">
+        <div class="step-pip__circle">1</div>
+        <div class="step-pip__label">Address</div>
+      </div>
+      <div class="step-connector" id="conn-1"></div>
+      <div class="step-pip" id="pip-2">
+        <div class="step-pip__circle">2</div>
+        <div class="step-pip__label">Valuation</div>
+      </div>
+      <div class="step-connector" id="conn-2"></div>
+      <div class="step-pip" id="pip-3">
+        <div class="step-pip__circle">3</div>
+        <div class="step-pip__label">Priorities</div>
+      </div>
+      <div class="step-connector" id="conn-3"></div>
+      <div class="step-pip" id="pip-4">
+        <div class="step-pip__circle">4</div>
+        <div class="step-pip__label">Recommendation</div>
+      </div>
+    </div>
+
+    <!-- Loading bar (shown between steps) -->
+    <div class="loading-bar" id="loading-bar" aria-live="polite">
+      <div class="spinner" role="status"></div>
+      <p id="loading-msg">Working on it...</p>
+    </div>
+
+    <!-- ── Step 1: Address ───────────────────────────── -->
+    <div id="step-1" class="advisor-card">
+      <h2>Enter your property address.</h2>
+      <p class="subtitle">Ellis will pull independent valuations for your home. Florida addresses only during early access.</p>
+      <div class="error-banner" id="error-1" role="alert"></div>
+      <form id="address-form" novalidate>
+        <div class="form-group mb-16">
+          <label for="addr-street">Street address</label>
+          <input id="addr-street" name="street" type="text" class="form-input"
+            placeholder="e.g. 123 Maple Street" required autocomplete="street-address">
+        </div>
+        <div class="form-row mb-16">
+          <div class="form-group">
+            <label for="addr-city">City</label>
+            <input id="addr-city" name="city" type="text" class="form-input"
+              placeholder="e.g. Daytona Beach" autocomplete="address-level2">
+          </div>
+          <div class="form-group" style="max-width: 130px;">
+            <label for="addr-zip">ZIP code</label>
+            <input id="addr-zip" name="zip" type="text" class="form-input"
+              placeholder="32118" required maxlength="5" pattern="\d{5}" autocomplete="postal-code">
+          </div>
+        </div>
+        <div class="form-group mb-24">
+          <label for="addr-county">County <span style="font-weight:400; color:var(--text-light);">(helps route to the right MLS)</span></label>
+          <input id="addr-county" name="county" type="text" class="form-input"
+            placeholder="e.g. Volusia" autocomplete="off">
+        </div>
+        <button type="submit" class="btn btn--primary btn--lg w-full">
+          Look up my home →
+        </button>
+      </form>
+    </div>
+
+    <!-- ── Step 2: Valuation results ─────────────────── -->
+    <div id="step-2" class="advisor-card hidden">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px; margin-bottom:4px;">
+        <h2 style="margin-bottom:0;">Your valuation.</h2>
+        <button class="btn btn--outline btn--sm" id="btn-restart-val">Start over</button>
+      </div>
+      <p class="subtitle" id="val-address-display" style="font-family:var(--font-mono); font-size:12px; color:var(--text-light); margin-bottom:24px;"></p>
+      <div class="error-banner" id="error-2" role="alert"></div>
+      <div id="valuation-sources"></div>
+      <div id="ellis-range-container"></div>
+      <div class="property-facts-bar" id="property-facts"></div>
+      <button class="btn btn--primary btn--lg w-full mt-32" id="btn-to-sliders">
+        Set my priorities →
+      </button>
+    </div>
+
+    <!-- ── Step 3: Trade-off sliders ─────────────────── -->
+    <div id="step-3" class="advisor-card hidden">
+      <h2>What matters most to you?</h2>
+      <p class="subtitle">Drag each slider to where you actually are — not where you wish you were. These drive your recommendation.</p>
+      <div class="error-banner" id="error-3" role="alert"></div>
+      <form id="sliders-form" novalidate>
+
+        <div class="advisor-slider-row">
+          <div class="slider-label-row">
+            <span class="slider-name">Speed vs. Price</span>
+            <span class="slider-val" id="lbl-speed">Balanced</span>
+          </div>
+          <input type="range" class="advisor-range" id="sl-speed"
+            min="0" max="100" value="50" aria-label="Speed vs. Price">
+          <div class="slider-ends"><span>Quick sale</span><span>Highest price</span></div>
+        </div>
+
+        <div class="advisor-slider-row">
+          <div class="slider-label-row">
+            <span class="slider-name">Effort vs. Savings</span>
+            <span class="slider-val" id="lbl-effort">Balanced</span>
+          </div>
+          <input type="range" class="advisor-range" id="sl-effort"
+            min="0" max="100" value="50" aria-label="Effort vs. Savings">
+          <div class="slider-ends"><span>Hands-off</span><span>I'll do the work</span></div>
+        </div>
+
+        <div class="advisor-slider-row">
+          <div class="slider-label-row">
+            <span class="slider-name">Certainty vs. Risk</span>
+            <span class="slider-val" id="lbl-certainty">Balanced</span>
+          </div>
+          <input type="range" class="advisor-range" id="sl-certainty"
+            min="0" max="100" value="50" aria-label="Certainty vs. Risk">
+          <div class="slider-ends"><span>Guaranteed number</span><span>I can tolerate risk</span></div>
+        </div>
+
+        <div class="advisor-slider-row">
+          <div class="slider-label-row">
+            <span class="slider-name">Timing vs. Exposure</span>
+            <span class="slider-val" id="lbl-timing">Balanced</span>
+          </div>
+          <input type="range" class="advisor-range" id="sl-timing"
+            min="0" max="100" value="50" aria-label="Timing vs. Exposure">
+          <div class="slider-ends"><span>Need to move in 30 days</span><span>90+ days, full market</span></div>
+        </div>
+
+        <!-- Live net proceeds preview based on slider position -->
+        <div class="proceeds-preview" id="proceeds-preview">
+          <div class="proceeds-preview__label">Estimated net proceeds</div>
+          <div id="proceeds-rows"></div>
+          <p style="font-size:11px; color:var(--text-light); margin-top:12px; font-style:italic;">
+            Calculated from Ellis valuation midpoint. AI recommendation may refine these figures.
+          </p>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--lg w-full mt-24">
+          Get my Ellis recommendation →
+        </button>
+      </form>
+    </div>
+
+    <!-- ── Step 4: Recommendation ─────────────────────── -->
+    <div id="step-4" class="hidden">
+      <div class="rec-wrap">
+        <div id="recommendation-output"></div>
+        <div class="text-center mt-32" style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
+          <button class="btn btn--outline" id="btn-restart-rec">Try a different address</button>
+          <a href="index.html#waitlist" class="btn btn--primary">Join the waitlist →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo">Ellis<span>.</span></div>
+        <div class="footer__tagline">The moment everything becomes clear.</div>
+        <p style="font-size: 13px; line-height: 1.6;">An AI-powered home selling platform and licensed real estate brokerage. Honest data. Every option. No agenda.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Platform</h4>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="advisor.html">Try Ellis</a>
+        <a href="index.html#waitlist">Early Access</a>
+      </div>
+      <div class="footer__col">
+        <h4>Partners</h4>
+        <a href="for-investors.html">For Investors</a>
+        <a href="for-agents.html">For Agents</a>
+        <a href="contact.html">Get in Touch</a>
+      </div>
+      <div class="footer__col">
+        <h4>Company</h4>
+        <a href="contact.html">Contact</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Licensing</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Ellis. Licensed Real Estate Brokerage. All rights reserved.</span>
+      <div style="display: flex; gap: 24px;">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Licensing</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+// ── Ellis Advisor — connects frontend to the Express backend ──────────────
+// Backend must be running: cd backend && npm start  (port 3001)
+// ─────────────────────────────────────────────────────────────────────────
+const API_BASE = window.ELLIS_API_BASE || 'http://localhost:3001';
+
+let currentValuation = null;
+
+// ── Step management ───────────────────────────────────────────────────────
+
+const STEPS = {
+  ADDRESS:        { el: 'step-1', pip: 1 },
+  VALUATION:      { el: 'step-2', pip: 2 },
+  SLIDERS:        { el: 'step-3', pip: 3 },
+  RECOMMENDATION: { el: 'step-4', pip: 4 },
+};
+
+function showStep(key) {
+  Object.values(STEPS).forEach(s => document.getElementById(s.el)?.classList.add('hidden'));
+  document.getElementById('loading-bar').classList.remove('visible');
+
+  const target = STEPS[key];
+  document.getElementById(target.el)?.classList.remove('hidden');
+
+  // Update pip states
+  for (let i = 1; i <= 4; i++) {
+    const pip  = document.getElementById(`pip-${i}`);
+    pip.classList.remove('active', 'done');
+    if (i < target.pip) pip.classList.add('done');
+    if (i === target.pip) pip.classList.add('active');
+    if (i < 4) {
+      document.getElementById(`conn-${i}`)?.classList.toggle('done', i < target.pip);
+    }
+  }
+
+  window.scrollTo({ top: document.getElementById('step-indicator').offsetTop - 80, behavior: 'smooth' });
+}
+
+function showLoading(msg) {
+  Object.values(STEPS).forEach(s => document.getElementById(s.el)?.classList.add('hidden'));
+  document.getElementById('loading-msg').textContent = msg || 'Working on it...';
+  document.getElementById('loading-bar').classList.add('visible');
+}
+
+function showError(id, msg) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = msg;
+  el.classList.add('visible');
+}
+function clearError(id) {
+  const el = document.getElementById(id);
+  if (el) { el.textContent = ''; el.classList.remove('visible'); }
+}
+
+// ── Formatting helpers ────────────────────────────────────────────────────
+
+function fmt(n) {
+  if (n == null || isNaN(n)) return '—';
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency', currency: 'USD', maximumFractionDigits: 0,
+  }).format(n);
+}
+function fmtK(n) {
+  if (n == null) return '—';
+  return n >= 1000 ? '$' + Math.round(n / 1000) + 'K' : fmt(n);
+}
+
+// ── Step 1: Address lookup ────────────────────────────────────────────────
+
+document.getElementById('address-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  clearError('error-1');
+
+  const street = document.getElementById('addr-street').value.trim();
+  const city   = document.getElementById('addr-city').value.trim();
+  const zip    = document.getElementById('addr-zip').value.trim();
+  const county = document.getElementById('addr-county').value.trim();
+
+  if (!street) { showError('error-1', 'Please enter a street address.'); return; }
+  if (!/^\d{5}$/.test(zip)) { showError('error-1', 'Please enter a valid 5-digit ZIP code.'); return; }
+
+  showLoading('Pulling valuation data for your address...');
+
+  try {
+    const res  = await fetch(`${API_BASE}/api/valuation`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ street, city, state: 'FL', zip, county: county || undefined }),
+    });
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.error || `Server error ${res.status}`);
+
+    currentValuation = json.data;
+    renderValuation(currentValuation);
+    showStep('VALUATION');
+  } catch (err) {
+    showStep('ADDRESS');
+    showError('error-1', 'Could not retrieve valuation: ' + err.message);
+  }
+});
+
+// ── Render valuation panel ────────────────────────────────────────────────
+
+const SOURCE_ICONS = { zillow: '🏠', comp_avm: '📊', tax_assessment: '🏛️' };
+
+function renderValuation(panel) {
+  document.getElementById('val-address-display').textContent =
+    panel.address?.formatted || '';
+
+  // Sources
+  const sources = panel.valuationSources || [];
+  document.getElementById('valuation-sources').innerHTML = sources.length
+    ? sources.map(s => `
+        <div class="val-source-row">
+          <div>
+            <div class="val-source-name">${SOURCE_ICONS[s.id] || '📌'} ${s.name}</div>
+            <div class="val-source-meta">${s.accuracy || ''}</div>
+            ${s.attribution ? `<div class="val-source-attr">${s.attribution}</div>` : ''}
+          </div>
+          <div>
+            <div class="val-source-amount">${fmt(s.value)}</div>
+            <div class="val-source-range">${
+              s.lowValue && s.highValue
+                ? fmtK(s.lowValue) + ' – ' + fmtK(s.highValue)
+                : ''
+            }</div>
+          </div>
+        </div>
+      `).join('')
+    : `<p style="font-size:14px;color:var(--text-light);padding:12px 0;">
+         No valuation data returned for this address.
+         Confirm it is a Florida residential property and try again.
+       </p>`;
+
+  // Ellis range
+  const range = panel.ellisRange;
+  document.getElementById('ellis-range-container').innerHTML = range
+    ? `<div class="ellis-range-box">
+         <div class="ellis-range-box__label">Ellis Recommended Range</div>
+         <div class="ellis-range-box__value">${range.formattedLow} – ${range.formattedHigh}</div>
+       </div>
+       <p class="ellis-range-note">${range.interpretation || ''}</p>`
+    : '';
+
+  // Property facts
+  const f = panel.propertyFacts || {};
+  const facts = [
+    f.beds      ? `<div class="property-fact"><strong>${f.beds}</strong> bed</div>` : '',
+    f.baths     ? `<div class="property-fact"><strong>${f.baths}</strong> bath</div>` : '',
+    f.sqft      ? `<div class="property-fact"><strong>${f.sqft.toLocaleString()}</strong> sqft</div>` : '',
+    f.yearBuilt ? `<div class="property-fact">Built <strong>${f.yearBuilt}</strong></div>` : '',
+    f.annualTax ? `<div class="property-fact">Tax <strong>${fmt(f.annualTax)}/yr</strong></div>` : '',
+  ].filter(Boolean);
+  document.getElementById('property-facts').innerHTML = facts.length
+    ? facts.join('')
+    : `<div class="property-fact" style="color:var(--text-light);">Property details unavailable for this address.</div>`;
+
+  // Seed the net proceeds preview
+  if (range?.midpoint) updateProceedsPreview(range.midpoint);
+}
+
+// ── Step 2 → 3 ────────────────────────────────────────────────────────────
+
+document.getElementById('btn-to-sliders').addEventListener('click', () => showStep('SLIDERS'));
+
+// ── Sliders ───────────────────────────────────────────────────────────────
+
+const SLIDER_LABELS = {
+  'sl-speed':     { lbl: 'lbl-speed',     lo: 'Quick sale',          mid: 'Balanced',         hi: 'Highest price' },
+  'sl-effort':    { lbl: 'lbl-effort',    lo: 'Hands-off',           mid: 'Balanced',         hi: "I'll do the work" },
+  'sl-certainty': { lbl: 'lbl-certainty', lo: 'Needs certainty',     mid: 'Balanced',         hi: 'Tolerates risk' },
+  'sl-timing':    { lbl: 'lbl-timing',    lo: '30-day urgency',      mid: 'Moderate timeline',hi: '90+ days' },
+};
+
+function sliderLabel(id, val) {
+  const d = SLIDER_LABELS[id];
+  if (!d) return String(val);
+  return val < 30 ? d.lo : val > 70 ? d.hi : d.mid;
+}
+
+document.querySelectorAll('.advisor-range').forEach(el => {
+  function update() {
+    const v = parseInt(el.value);
+    el.style.setProperty('--fill', v + '%');
+    const lblId = SLIDER_LABELS[el.id]?.lbl;
+    if (lblId) document.getElementById(lblId).textContent = sliderLabel(el.id, v);
+    updateProceedsPreview();
+  }
+  el.addEventListener('input', update);
+  update();
+});
+
+// ── Net proceeds preview (client-side, from midpoint × commission) ─────────
+
+const PATH_CALCS = [
+  { id: 'ai_listing',        name: 'AI-Assisted Listing',   icon: '🤖', rate: 0.0175, fixed: 0 },
+  { id: 'discount_broker',   name: 'Discount Broker',       icon: '📋', rate: 0.015,  fixed: 0 },
+  { id: 'traditional_agent', name: 'Traditional Agent',     icon: '🤝', rate: 0.03,   fixed: 0 },
+  { id: 'fsbo',              name: 'FSBO + Ellis Tools',    icon: '📦', rate: 0,       fixed: 799 },
+  { id: 'ibuyer',            name: 'Cash Offer / iBuyer',  icon: '💰', rate: 0.08,   fixed: 0 },
+];
+
+function updateProceedsPreview(overrideMid) {
+  const mid = overrideMid ?? currentValuation?.ellisRange?.midpoint;
+  const el  = document.getElementById('proceeds-rows');
+  if (!mid || !el) return;
+
+  const rows = PATH_CALCS
+    .map(p => ({ ...p, net: Math.round(mid * (1 - p.rate) - p.fixed) }))
+    .sort((a, b) => b.net - a.net);
+
+  el.innerHTML = rows.map((p, i) => `
+    <div class="proceeds-row${i === 0 ? ' proceeds-row--top' : ''}">
+      <span class="proceeds-row__name">${p.icon} ${p.name}</span>
+      <span class="proceeds-row__amount">${fmt(p.net)}</span>
+    </div>
+  `).join('');
+}
+
+// ── Step 3: Get recommendation ─────────────────────────────────────────────
+
+document.getElementById('sliders-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  clearError('error-3');
+
+  const tradeoffs = {
+    speedVsPrice:     parseInt(document.getElementById('sl-speed').value),
+    effortVsSavings:  parseInt(document.getElementById('sl-effort').value),
+    certaintyVsRisk:  parseInt(document.getElementById('sl-certainty').value),
+    timingVsExposure: parseInt(document.getElementById('sl-timing').value),
+  };
+
+  showLoading('Ellis is analyzing your situation...');
+
+  try {
+    const res  = await fetch(`${API_BASE}/api/recommend`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tradeoffs, valuationData: currentValuation }),
+    });
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.error || `Server error ${res.status}`);
+
+    renderRecommendation(json.data);
+    showStep('RECOMMENDATION');
+  } catch (err) {
+    showStep('SLIDERS');
+    showError('error-3', 'Could not generate recommendation: ' + err.message);
+  }
+});
+
+// ── Render recommendation ──────────────────────────────────────────────────
+
+const PATH_META = {
+  ai_listing:        { icon: '🤖' },
+  traditional_agent: { icon: '🤝' },
+  discount_broker:   { icon: '📋' },
+  fsbo:              { icon: '📦' },
+  ibuyer:            { icon: '💰' },
+};
+
+function renderRecommendation(rec) {
+  const topPath = (rec.paths || []).find(p => p.id === rec.recommendedPath);
+  const sorted  = [...(rec.paths || [])].sort((a, b) => a.rank - b.rank);
+  const icon    = PATH_META[rec.recommendedPath]?.icon || '★';
+
+  document.getElementById('recommendation-output').innerHTML = `
+    <div class="rec-header">
+      <div class="rec-header__eyebrow">★ Ellis Recommends</div>
+      <div class="rec-header__path">${icon} ${topPath?.name || rec.recommendedPath}</div>
+      <div class="rec-header__reason">${rec.recommendationReason || ''}</div>
+    </div>
+    <div class="rec-body">
+      ${rec.honestyNote ? `
+        <div class="honesty-note">
+          <strong>Honest note:</strong> ${rec.honestyNote}
+        </div>` : ''}
+      ${sorted.map(p => pathCard(p, p.id === rec.recommendedPath)).join('')}
+      <div class="rec-footer">
+        <p>This is a live preview of the Ellis advisor. Full service launches in Florida soon.</p>
+        <a href="index.html#waitlist" class="btn btn--primary">Get early access →</a>
+      </div>
+    </div>
+  `;
+}
+
+function pathCard(path, isRec) {
+  const icon    = PATH_META[path.id]?.icon || '📌';
+  const cost    = path.estimatedCommission ?? path.estimatedCost ?? path.estimatedDiscount ?? null;
+
+  return `
+    <div class="path-result-card${isRec ? ' path-result-card--rec' : ''}">
+      <div class="path-icon">${icon}</div>
+      <div>
+        <span class="path-badge${isRec ? '' : ' path-badge--other'}">${isRec ? '★ Recommended' : '#' + path.rank}</span>
+        <div class="path-name">${path.name}</div>
+        <div class="path-meta">${[path.timeToClose, path.effortLevel ? 'Effort: ' + path.effortLevel : '', path.certaintyLevel ? 'Certainty: ' + path.certaintyLevel : ''].filter(Boolean).join(' · ')}</div>
+        ${path.ellisNote ? `<div class="path-note">"${path.ellisNote}"</div>` : ''}
+        <div class="path-pros-cons">
+          ${(path.pros || []).slice(0, 2).map(t => `<span class="pro">${t}</span>`).join('')}
+          ${(path.cons || []).slice(0, 1).map(t => `<span class="con">${t}</span>`).join('')}
+        </div>
+        ${path.availabilityNote ? `<div class="path-avail">${path.availabilityNote}</div>` : ''}
+      </div>
+      <div class="path-proceeds">
+        <div class="path-proceeds__lbl">Est. net</div>
+        <div class="path-proceeds__amt${isRec ? ' path-proceeds__amt--rec' : ''}">${fmt(path.estimatedNetProceeds)}</div>
+        ${cost ? `<div class="path-proceeds__detail">${fmt(cost)} cost</div>` : ''}
+      </div>
+    </div>
+  `;
+}
+
+// ── Restart ────────────────────────────────────────────────────────────────
+
+function restart() {
+  currentValuation = null;
+  document.getElementById('address-form').reset();
+  document.getElementById('recommendation-output').innerHTML = '';
+  ['error-1','error-2','error-3'].forEach(clearError);
+  showStep('ADDRESS');
+}
+document.getElementById('btn-restart-val').addEventListener('click', restart);
+document.getElementById('btn-restart-rec').addEventListener('click', restart);
+
+// ── Init ───────────────────────────────────────────────────────────────────
+showStep('ADDRESS');
+</script>
+</body>
+</html>
