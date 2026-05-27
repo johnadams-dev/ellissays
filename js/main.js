@@ -1,7 +1,7 @@
 // ── Navigation active state ───────────────────────────
 (function() {
   const path = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav__links a').forEach(a => {
+  document.querySelectorAll('.nav__links a, .mobile-nav a').forEach(a => {
     const href = a.getAttribute('href');
     if (href === path || (path === 'index.html' && href === 'index.html')) {
       a.classList.add('active');
@@ -17,6 +17,13 @@ if (menuBtn && mobileNav) {
     mobileNav.classList.toggle('open');
     menuBtn.setAttribute('aria-expanded',
       mobileNav.classList.contains('open') ? 'true' : 'false');
+  });
+
+  mobileNav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
   });
 }
 

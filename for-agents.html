@@ -1,14 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="ellis-32.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="ellis-180.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>For Agents — Ellis</title>
-  <meta name="description" content="Ellis agent partners receive pre-educated, committed sellers as referrals — homeowners who have already gone through the decision process and chosen full-service representation.">
-  <link rel="stylesheet" href="css/style.css">
+
+  <title>Agent Partner Program — Ellis</title>
+  <meta name="description" content="Qualified referrals. No cold leads. Ellis matches pre-educated sellers with top local agents and schedules the appointments.">
+
+  <link rel="canonical" href="https://ellissays.com/for-agents.html">
+
+  <meta property="og:type"         content="website">
+  <meta property="og:site_name"    content="Ellis">
+  <meta property="og:url"          content="https://ellissays.com/for-agents.html">
+  <meta property="og:title"        content="Ellis Agent Partners — Qualified referrals, no cold leads.">
+  <meta property="og:description"  content="Qualified referrals. No cold leads. Ellis matches pre-educated sellers with top local agents and schedules the appointments.">
+  <meta property="og:image"        content="https://ellissays.com/og-image.png">
+  <meta property="og:image:width"  content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt"    content="Ellis — The moment everything becomes clear. AI-powered home selling platform.">
+  <meta property="og:locale"       content="en_US">
+
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:site"        content="@ellissays">
+  <meta name="twitter:title"       content="Ellis Agent Partners — Qualified referrals, no cold leads.">
+  <meta name="twitter:description" content="Qualified referrals. No cold leads. Ellis matches pre-educated sellers with top local agents and schedules the appointments.">
+  <meta name="twitter:image"       content="https://ellissays.com/og-image.png">
+  <meta name="twitter:image:alt"   content="Ellis — AI-powered home selling platform">
+
+  <link rel="icon"             type="image/x-icon"         href="/favicon.ico">
+  <link rel="icon"             type="image/png" sizes="16x16"   href="/ellis-16.png">
+  <link rel="icon"             type="image/png" sizes="32x32"   href="/ellis-32.png">
+  <link rel="icon"             type="image/png" sizes="48x48"   href="/ellis-48.png">
+  <link rel="apple-touch-icon" sizes="180x180"              href="/ellis-180.png">
+  <link rel="icon"             type="image/png" sizes="192x192" href="/ellis-192.png">
+  <link rel="icon"             type="image/png" sizes="512x512" href="/ellis-512.png">
+
+  <meta name="theme-color" content="#1C2B3A">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KGTZW44DQ8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KGTZW44DQ8');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
   <style>
     .benefit-card {
       background: var(--white);
@@ -55,15 +96,26 @@
 
 <nav class="nav">
   <div class="nav__inner">
-    <a href="../index.html" class="nav__logo">Ellis<span>.</span></a>
+    <a href="index.html" class="nav__logo">Ellis<span>.</span></a>
     <div class="nav__links">
-      <a href="../index.html">Home</a>
+      <a href="index.html">Home</a>
       <a href="how-it-works.html">How It Works</a>
       <a href="for-investors.html">For Investors</a>
       <a href="for-agents.html" class="active">For Agents</a>
       <a href="contact.html">Contact</a>
     </div>
-    <a href="../index.html#waitlist" class="nav__cta">Get Early Access</a>
+    <a href="index.html#waitlist" class="nav__cta">Get Early Access</a>
+    <button id="menu-btn" class="nav__hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div id="mobile-nav" class="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="how-it-works.html">How It Works</a>
+    <a href="for-investors.html">For Investors</a>
+    <a href="for-agents.html">For Agents</a>
+    <a href="contact.html">Contact</a>
+    <a href="index.html#waitlist" class="mobile-nav__cta">Get Early Access</a>
   </div>
 </nav>
 
@@ -243,7 +295,7 @@
         <div class="footer__tagline">The moment everything becomes clear.</div>
         <p style="font-size: 13px; line-height: 1.6;">An AI-powered home selling platform and licensed real estate brokerage.</p>
       </div>
-      <div class="footer__col"><h4>Platform</h4><a href="how-it-works.html">How It Works</a><a href="../index.html#waitlist">Early Access</a></div>
+      <div class="footer__col"><h4>Platform</h4><a href="how-it-works.html">How It Works</a><a href="index.html#waitlist">Early Access</a></div>
       <div class="footer__col"><h4>Partners</h4><a href="for-investors.html">For Investors</a><a href="for-agents.html">For Agents</a></div>
       <div class="footer__col"><h4>Company</h4><a href="contact.html">Contact</a><a href="#">Privacy</a><a href="#">Licensing</a></div>
     </div>
