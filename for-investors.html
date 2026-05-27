@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Investors — Ellis</title>
+  <meta name="description" content="Ellis investor subscriptions give local flippers and cash buyers first access to motivated sellers before they hit the open market. Active intent. Not scraped lists.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .comparison-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 14px;
+    }
+    .comparison-row:last-child { border-bottom: none; }
+    .comparison-cell {
+      padding: 18px 24px;
+      line-height: 1.55;
+    }
+    .comparison-cell--bad {
+      color: var(--text-mid);
+      background: var(--white);
+      border-right: 1px solid var(--rule);
+    }
+    .comparison-cell--good {
+      color: var(--navy);
+      background: var(--blue-pale);
+      font-weight: 400;
+    }
+    .comparison-cell--bad::before { content: '✗  '; color: #DC2626; font-weight: 500; }
+    .comparison-cell--good::before { content: '✓  '; color: #2D6A35; font-weight: 500; }
+
+    .tier-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--rule);
+      padding: 36px;
+      position: relative;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .tier-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .tier-card--featured {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
+    }
+    .tier-card__name { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-light); margin-bottom: 16px; }
+    .tier-card--featured .tier-card__name { color: rgba(255,255,255,0.5); }
+    .tier-card__price { font-family: var(--font-display); font-size: 48px; font-weight: 400; line-height: 1; color: var(--navy); margin-bottom: 4px; }
+    .tier-card--featured .tier-card__price { color: var(--white); }
+    .tier-card__per { font-size: 13px; color: var(--text-light); margin-bottom: 28px; }
+    .tier-card--featured .tier-card__per { color: rgba(255,255,255,0.5); }
+    .tier-feature { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--text-mid); margin-bottom: 12px; line-height: 1.5; }
+    .tier-feature::before { content: '✓'; color: var(--blue); font-weight: 600; flex-shrink: 0; margin-top: 1px; }
+    .tier-card--featured .tier-feature { color: rgba(255,255,255,0.75); }
+    .tier-card--featured .tier-feature::before { color: var(--clay-light); }
+    .tier-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--clay); color: var(--white); font-size: 11px; font-weight: 500; padding: 4px 14px; border-radius: 100px; white-space: nowrap; font-family: var(--font-mono); letter-spacing: 0.06em; }
+
+    .process-step {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .process-step:last-child { border-bottom: none; }
+    .process-step__num {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+    .process-step__title { font-size: 16px; font-weight: 500; color: var(--navy); margin-bottom: 6px; }
+    .process-step__body { font-size: 14px; color: var(--text-mid); line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="../index.html" class="nav__logo">Ellis<span>.</span></a>
+    <div class="nav__links">
+      <a href="../index.html">Home</a>
+      <a href="how-it-works.html">How It Works</a>
+      <a href="for-investors.html" class="active">For Investors</a>
+      <a href="for-agents.html">For Agents</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="../index.html#waitlist" class="nav__cta">Get Early Access</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <span class="overline">Ellis for Investors</span>
+    <h1 class="display display-lg mt-16">First access to sellers<br>who actually want to sell.</h1>
+    <p class="lead">Ellis investor subscriptions give local flippers and cash buyers a direct line to motivated homeowners — before they ever hit the public market.</p>
+  </div>
+</div>
+
+<!-- The problem -->
+<section class="section">
+  <div class="container">
+    <div class="grid-2 mb-64" data-reveal>
+      <div>
+        <span class="overline">The Lead Quality Problem</span>
+        <h2 class="display display-md mt-16">Most investor leads are guesses dressed up as data.</h2>
+      </div>
+      <div>
+        <p class="lead">A tax lien is a sign someone <em>might</em> eventually need to sell. It is not a declaration that they have decided to sell today. PropStream, BatchLeads, and similar platforms are selling you lagging indicators from public records. Ellis is different.</p>
+      </div>
+    </div>
+    <div style="border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--rule);" data-reveal data-delay="100">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; background: var(--navy); color: var(--white);">
+        <div style="padding: 18px 24px; font-size: 13px; font-weight: 500; border-right: 1px solid rgba(255,255,255,0.1);">Traditional platforms (PropStream, BatchLeads)</div>
+        <div style="padding: 18px 24px; font-size: 13px; font-weight: 500; color: var(--clay-light);">Ellis investor subscriptions</div>
+      </div>
+      <div class="comparison-row"><div class="comparison-cell comparison-cell--bad">Scraped from public records — lagging indicators</div><div class="comparison-cell comparison-cell--good">Active self-declared intent — homeowner raised their hand today</div></div>
+      <div class="comparison-row"><div class="comparison-cell comparison-cell--bad">No confirmation seller is actually motivated</div><div class="comparison-cell comparison-cell--good">Seller completed a 5-minute advisor flow to get here</div></div>
+      <div class="comparison-row"><div class="comparison-cell comparison-cell--bad">Same lists sold to thousands of investors in your market</div><div class="comparison-cell comparison-cell--good">Geo-exclusive at premium tier — one subscriber per zip code</div></div>
+      <div class="comparison-row"><div class="comparison-cell comparison-cell--bad">Property data only — no seller intent signals included</div><div class="comparison-cell comparison-cell--good">Full seller profile: valuation range, timeline, urgency level, trade-off priorities</div></div>
+      <div class="comparison-row"><div class="comparison-cell comparison-cell--bad">Cold outreach — seller has no idea who you are</div><div class="comparison-cell comparison-cell--good">Warm introduction — seller explicitly opted in to hear from you</div></div>
+      <div class="comparison-row"><div class="comparison-cell comparison-cell--bad">Stale listings worth less — you find out late</div><div class="comparison-cell comparison-cell--good">Stale listing alerts — seller is documented as motivated, market exposure proven</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Tiers -->
+<section class="section section--sand">
+  <div class="container">
+    <div class="text-center mb-48" data-reveal>
+      <span class="overline">Subscription Tiers</span>
+      <h2 class="display display-md mt-16">Choose your level of access.</h2>
+      <p class="lead mt-16" style="max-width: 500px; margin: 16px auto 0;">All subscriptions include only homeowners who explicitly opted in to investor contact.</p>
+    </div>
+    <div class="grid-3" data-reveal data-delay="100">
+      <div class="tier-card">
+        <div class="tier-card__name">Basic</div>
+        <div class="tier-card__price">$99</div>
+        <div class="tier-card__per">per month</div>
+        <div class="tier-feature">County-level motivated seller alerts</div>
+        <div class="tier-feature">48-hour notification window before seller selects final path</div>
+        <div class="tier-feature">Property address and valuation range included</div>
+        <div class="tier-feature">Seller urgency indicator (low / medium / high)</div>
+        <div class="tier-feature">Cancel anytime</div>
+        <a href="contact.html" class="btn btn--outline w-full mt-32">Get Started</a>
+      </div>
+      <div class="tier-card tier-card--featured">
+        <div class="tier-badge">Most Popular</div>
+        <div class="tier-card__name">Professional</div>
+        <div class="tier-card__price" style="color: var(--white);">$199</div>
+        <div class="tier-card__per">per month</div>
+        <div class="tier-feature">Zip-code targeted leads in your chosen markets</div>
+        <div class="tier-feature">72-hour exclusive first-look window</div>
+        <div class="tier-feature">Full seller profile — valuation, condition inputs, timeline, trade-off priorities</div>
+        <div class="tier-feature">Stale listing alerts — Day 45+ motivated sellers with documented market exposure</div>
+        <div class="tier-feature">Up to 3 zip codes</div>
+        <a href="contact.html" class="btn btn--primary w-full mt-32">Get Started</a>
+      </div>
+      <div class="tier-card">
+        <div class="tier-card__name">Premium</div>
+        <div class="tier-card__price">$299</div>
+        <div class="tier-card__per">per month</div>
+        <div class="tier-feature">Exclusive zip code assignment — one subscriber per zip</div>
+        <div class="tier-feature">Direct warm introduction to homeowner with their consent</div>
+        <div class="tier-feature">First-mover advantage — no competing investors on your leads</div>
+        <div class="tier-feature">All stale listing alerts in your zip codes</div>
+        <div class="tier-feature">Priority onboarding and account support</div>
+        <a href="contact.html" class="btn btn--outline w-full mt-32">Get Started</a>
+      </div>
+    </div>
+    <p class="caption text-center mt-24" data-reveal>All tiers require seller opt-in. Pricing is illustrative during the early access period and subject to change at launch.</p>
+  </div>
+</section>
+
+<!-- How it works for investors -->
+<section class="section">
+  <div class="container">
+    <div class="grid-2" data-reveal>
+      <div>
+        <span class="overline">The Process</span>
+        <h2 class="display display-md mt-16">How Ellis delivers your leads.</h2>
+        <p class="lead mt-16">Simple, transparent, and always with homeowner consent at every step.</p>
+      </div>
+      <div>
+        <div class="process-step">
+          <div class="process-step__num">01</div>
+          <div>
+            <div class="process-step__title">Homeowner completes the Ellis advisor flow</div>
+            <p class="process-step__body">They enter their address, see their valuation panel, answer the trade-off sliders, and receive their recommendation.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="process-step__num">02</div>
+          <div>
+            <div class="process-step__title">Ellis asks if they want investor contact</div>
+            <p class="process-step__body">Homeowners indicating urgency or selecting cash offer paths see a clear, plain-language opt-in: "Would you like to be contacted by local cash buyers before your home is listed publicly?"</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="process-step__num">03</div>
+          <div>
+            <div class="process-step__title">You receive an alert within your window</div>
+            <p class="process-step__body">Within 48–72 hours of opt-in (depending on your tier), you receive the lead notification with full property and seller profile.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="process-step__num">04</div>
+          <div>
+            <div class="process-step__title">You reach out directly</div>
+            <p class="process-step__body">Premium subscribers receive a warm introduction. Basic and Professional subscribers receive contact information to reach out independently. The homeowner knows to expect you.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Interest form -->
+<section class="section section--sand" id="investor-signup">
+  <div class="container">
+    <div class="grid-2" data-reveal>
+      <div>
+        <span class="overline">Early Access</span>
+        <h2 class="display display-md mt-16">Get in early.<br>Lock your zip codes.</h2>
+        <p class="lead mt-16">Premium subscribers get exclusive zip code assignments on a first-come basis. Early access members will be contacted first when Ellis launches in Florida.</p>
+      </div>
+      <div>
+        <div class="card">
+          <form id="investor-form" novalidate>
+            <div class="form-group mb-16">
+              <label for="inv-name">Your name</label>
+              <input id="inv-name" name="name" type="text" class="form-input" placeholder="First and last name" required>
+            </div>
+            <div class="form-group mb-16">
+              <label for="inv-email">Email address</label>
+              <input id="inv-email" name="email" type="email" class="form-input" placeholder="you@example.com" required>
+            </div>
+            <div class="form-group mb-16">
+              <label for="inv-market">Primary market (city or county)</label>
+              <input id="inv-market" name="market" type="text" class="form-input" placeholder="e.g. Volusia County, FL">
+            </div>
+            <div class="form-group mb-24">
+              <label for="inv-tier">Tier of interest</label>
+              <select id="inv-tier" name="type" class="form-input form-select">
+                <option value="">Select one</option>
+                <option value="basic">Basic — $99/mo</option>
+                <option value="professional">Professional — $199/mo</option>
+                <option value="premium">Premium — $299/mo (exclusive zip codes)</option>
+                <option value="unsure">Not sure yet</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn--navy btn--lg w-full">Request Early Access →</button>
+            <p class="form-note mt-12">No payment collected now. We'll reach out to confirm your market and zip codes before launch.</p>
+          </form>
+          <div class="success-msg" id="investor-success">
+            ✓ &nbsp;Got it. We'll be in touch to confirm your market and zip code preferences before launch.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo">Ellis<span>.</span></div>
+        <div class="footer__tagline">The moment everything becomes clear.</div>
+        <p style="font-size: 13px; line-height: 1.6;">An AI-powered home selling platform and licensed real estate brokerage.</p>
+      </div>
+      <div class="footer__col"><h4>Platform</h4><a href="how-it-works.html">How It Works</a><a href="../index.html#waitlist">Early Access</a></div>
+      <div class="footer__col"><h4>Partners</h4><a href="for-investors.html">For Investors</a><a href="for-agents.html">For Agents</a></div>
+      <div class="footer__col"><h4>Company</h4><a href="contact.html">Contact</a><a href="#">Privacy</a><a href="#">Licensing</a></div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Ellis. Licensed Real Estate Brokerage. All rights reserved.</span>
+      <div style="display: flex; gap: 24px;"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

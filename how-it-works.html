@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Ellis Works — The moment everything becomes clear.</title>
+  <meta name="description" content="Learn how Ellis guides you from your first address lookup to closing — with honest valuations, trade-off sliders, and a recommendation built around your actual situation.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .step-block {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 32px;
+      padding: 48px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: start;
+    }
+    .step-block:last-child { border-bottom: none; }
+    .step-block__num {
+      font-family: var(--font-display);
+      font-size: 64px;
+      font-weight: 400;
+      color: var(--sand-dark);
+      line-height: 1;
+      padding-top: 4px;
+    }
+    .step-block__content {}
+    .step-block__tag { margin-bottom: 12px; }
+    .step-block__title { font-size: 26px; font-weight: 500; color: var(--navy); margin-bottom: 12px; }
+    .step-block__body { font-size: 16px; color: var(--text-mid); line-height: 1.7; margin-bottom: 24px; max-width: 600px; }
+    .step-block__visual { margin-top: 32px; }
+
+    .stale-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .stale-table th {
+      text-align: left;
+      padding: 14px 20px;
+      background: var(--navy);
+      color: var(--white);
+      font-weight: 500;
+      font-size: 13px;
+    }
+    .stale-table td {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+      line-height: 1.55;
+    }
+    .stale-table tr:nth-child(even) td { background: var(--sand); }
+    .stale-table tr:last-child td { border-bottom: none; }
+    .stale-table td:first-child { font-family: var(--font-mono); font-size: 12px; color: var(--clay); font-weight: 500; white-space: nowrap; }
+
+    .path-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 24px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--rule);
+      margin-bottom: 12px;
+      background: var(--white);
+      transition: box-shadow 0.2s;
+    }
+    .path-row:hover { box-shadow: var(--shadow-md); }
+    .path-row--featured { border-color: var(--blue); background: var(--blue-pale); }
+    .path-row__icon { font-size: 28px; flex-shrink: 0; margin-top: 2px; }
+    .path-row__label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); margin-bottom: 4px; }
+    .path-row__title { font-size: 17px; font-weight: 500; color: var(--navy); margin-bottom: 4px; }
+    .path-row__body { font-size: 14px; color: var(--text-mid); line-height: 1.55; }
+    .path-row__price { margin-left: auto; text-align: right; flex-shrink: 0; }
+    .path-row__price strong { display: block; font-family: var(--font-mono); font-size: 15px; color: var(--navy); }
+    .path-row__price span { font-size: 11px; color: var(--text-light); }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo">Ellis<span>.</span></a>
+    <div class="nav__links">
+      <a href="index.html">Home</a>
+      <a href="how-it-works.html" class="active">How It Works</a>
+      <a href="for-investors.html">For Investors</a>
+      <a href="for-agents.html">For Agents</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="index.html#waitlist" class="nav__cta">Get Early Access</a>
+  </div>
+</nav>
+
+<!-- Page header -->
+<div class="page-header">
+  <div class="container">
+    <span class="overline">The Ellis Process</span>
+    <h1 class="display display-lg mt-16">How Ellis works.</h1>
+    <p class="lead">From your first address lookup to closing day, Ellis is with you at every step — honest, clear, and always on your side.</p>
+  </div>
+</div>
+
+<!-- Main steps -->
+<section class="section">
+  <div class="container">
+
+    <!-- Step 1 -->
+    <div class="step-block" data-reveal>
+      <div class="step-block__num">01</div>
+      <div class="step-block__content">
+        <div class="step-block__tag"><span class="overline">Your Property Profile</span></div>
+        <h2 class="step-block__title">Enter your address. Ellis goes to work immediately.</h2>
+        <p class="step-block__body">The moment you type your address, Ellis queries four independent data sources and assembles your property profile in seconds. No forms to fill out. No waiting for a callback. The first thing you see is the honest picture of what your home is worth — and why four systems gave four different answers.</p>
+        <p class="step-block__body">That spread isn't a problem. It's your pricing intelligence. Ellis explains what it means for your strategy.</p>
+        <div class="step-block__visual">
+          <div class="val-panel" style="max-width: 520px;">
+            <div class="val-panel__header">
+              <h3>Your Home Valuation</h3>
+              <div class="val-panel__address">123 Maple Street, Daytona Beach, FL 32118</div>
+            </div>
+            <div class="val-panel__row">
+              <div class="val-source"><strong>Zillow Zestimate</strong>Updated daily · Attribution required</div>
+              <div><div class="val-amount">$391,000</div><div class="val-range">±$18K range</div></div>
+            </div>
+            <div class="val-panel__row">
+              <div class="val-source"><strong>HouseCanary AVM</strong>±2.5% accuracy</div>
+              <div><div class="val-amount">$401,000</div><div class="val-range">±$10K range</div></div>
+            </div>
+            <div class="val-panel__row">
+              <div class="val-source"><strong>ATTOM Comparable Sales</strong>12 comps · 90 days</div>
+              <div><div class="val-amount">$394,000</div><div class="val-range">±$12K range</div></div>
+            </div>
+            <div class="val-panel__row">
+              <div class="val-source"><strong>Cotality Market Index</strong>Trend-adjusted</div>
+              <div><div class="val-amount">$396,000</div><div class="val-range">±$9K range</div></div>
+            </div>
+            <div class="val-panel__row val-panel__row--total">
+              <div class="val-source"><strong>Ellis Recommended Range</strong></div>
+              <div><div class="val-amount">$384K – $408K</div></div>
+            </div>
+            <div class="val-panel__note">Four systems. Four answers. Here's what the spread means for how you should price — and why it matters more than any single number.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step-block" data-reveal>
+      <div class="step-block__num">02</div>
+      <div class="step-block__content">
+        <div class="step-block__tag"><span class="overline">The Trade-Off Advisor</span></div>
+        <h2 class="step-block__title">Four sliders. Real trade-offs. Ellis finds out what you actually value.</h2>
+        <p class="step-block__body">Everyone says they want the highest price, the fastest sale, and the least work. Those three things are almost never all available at once. The Ellis trade-off sliders make that real — each one has a genuine cost on both ends, so your answers reveal what you actually prioritize, not what you wish were true.</p>
+        <div class="step-block__visual">
+          <div class="slider-display" style="max-width: 520px;">
+            <div class="slider-display__header">
+              <h3>Your Trade-Off Profile</h3>
+              <p>Drag each slider to reflect your real priorities</p>
+            </div>
+            <div class="slider-item">
+              <div class="slider-item__label">Speed vs. Price</div>
+              <div class="slider-item__labels"><span>Quick sale</span><span>Highest possible price</span></div>
+              <div class="slider-track"><div class="slider-fill" style="width: 60%;"></div><div class="slider-thumb" style="left: 60%;"></div></div>
+            </div>
+            <div class="slider-item">
+              <div class="slider-item__label">Effort vs. Savings</div>
+              <div class="slider-item__labels"><span>Hands-off experience</span><span>I'll do the work</span></div>
+              <div class="slider-track"><div class="slider-fill" style="width: 35%;"></div><div class="slider-thumb" style="left: 35%;"></div></div>
+            </div>
+            <div class="slider-item">
+              <div class="slider-item__label">Certainty vs. Upside</div>
+              <div class="slider-item__labels"><span>Guaranteed number</span><span>I can tolerate risk</span></div>
+              <div class="slider-track"><div class="slider-fill" style="width: 25%;"></div><div class="slider-thumb" style="left: 25%;"></div></div>
+            </div>
+            <div class="slider-item">
+              <div class="slider-item__label">Timing vs. Exposure</div>
+              <div class="slider-item__labels"><span>Need to move in 30 days</span><span>90+ days, full market</span></div>
+              <div class="slider-track"><div class="slider-fill" style="width: 70%;"></div><div class="slider-thumb" style="left: 70%;"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step-block" id="paths" data-reveal>
+      <div class="step-block__num">03</div>
+      <div class="step-block__content">
+        <div class="step-block__tag"><span class="overline">Your Recommendation</span></div>
+        <h2 class="step-block__title">A clear recommendation. Side-by-side numbers. No pressure.</h2>
+        <p class="step-block__body">Based on your trade-off profile, your property, and your local market, Ellis produces a recommendation — along with estimated net proceeds for every available path. The data about agent-assisted sales producing higher median prices is presented plainly. Every option stays on the table. Ellis recommends; you decide.</p>
+        <div class="step-block__visual" style="max-width: 580px;">
+          <div class="path-row path-row--featured">
+            <div class="path-row__icon">🤖</div>
+            <div>
+              <div class="path-row__label">★ Ellis recommends for your situation</div>
+              <div class="path-row__title">AI-Assisted Listing</div>
+              <div class="path-row__body">Full MLS exposure. AI handles pricing, listing, showings, and offers. You save ~$6,200 vs. traditional agent on a $400K home.</div>
+            </div>
+            <div class="path-row__price"><strong>~$386,000</strong><span>est. net proceeds</span></div>
+          </div>
+          <div class="path-row">
+            <div class="path-row__icon">🤝</div>
+            <div>
+              <div class="path-row__label">Full-service option</div>
+              <div class="path-row__title">Traditional Agent</div>
+              <div class="path-row__body">Historically produces the highest sale price. Ellis matches you with 3 top local agents.</div>
+            </div>
+            <div class="path-row__price"><strong>~$383,000</strong><span>est. net after commission</span></div>
+          </div>
+          <div class="path-row">
+            <div class="path-row__icon">📋</div>
+            <div>
+              <div class="path-row__label">Lower commission</div>
+              <div class="path-row__title">Discount Broker</div>
+              <div class="path-row__body">Agent representation at a reduced listing commission.</div>
+            </div>
+            <div class="path-row__price"><strong>~$385,000</strong><span>est. net proceeds</span></div>
+          </div>
+          <div class="path-row">
+            <div class="path-row__icon">📦</div>
+            <div>
+              <div class="path-row__label">Self-managed</div>
+              <div class="path-row__title">FSBO with Ellis Tools</div>
+              <div class="path-row__body">MLS listing, documents, eSign. You handle showings and negotiation.</div>
+            </div>
+            <div class="path-row__price"><strong>~$390,000</strong><span>est. net (if priced right)</span></div>
+          </div>
+          <div class="path-row">
+            <div class="path-row__icon" style="font-size: 22px; opacity: 0.4;">💰</div>
+            <div style="opacity: 0.6;">
+              <div class="path-row__label">Cash offer</div>
+              <div class="path-row__title">iBuyer / Cash Offer</div>
+              <div class="path-row__body">Checked for your property and market.</div>
+            </div>
+            <div style="margin-left: auto;">
+              <div class="unavailable-banner" style="white-space: nowrap;">✕ Not available for your property</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="step-block" data-reveal>
+      <div class="step-block__num">04</div>
+      <div class="step-block__content">
+        <div class="step-block__tag"><span class="overline">Ellis Delivers</span></div>
+        <h2 class="step-block__title">Whichever path you choose, Ellis is your partner through closing.</h2>
+        <p class="step-block__body">Ellis doesn't just advise and walk away. Every path comes with the services to execute it — MLS listing, eSign documents, showing coordination, offer management, agent matching and scheduling. And if your listing stalls on market, Ellis proactively surfaces your next best move with data, not guesswork.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Stale listing lifecycle -->
+<section class="section section--sand">
+  <div class="container">
+    <div class="grid-2 mb-48" data-reveal>
+      <div>
+        <span class="overline">When Listings Stall</span>
+        <h2 class="display display-md mt-16">Ellis doesn't go quiet when things get hard.</h2>
+      </div>
+      <div>
+        <p class="lead">Most sellers overprice. The market is honest about it, even when people aren't. Ellis monitors your listing and tells you what the data says — at every stage.</p>
+      </div>
+    </div>
+    <div style="border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--rule);" data-reveal data-delay="100">
+      <table class="stale-table">
+        <thead>
+          <tr>
+            <th>Stage</th>
+            <th>What Ellis does</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Days 1–14</td>
+            <td>Weekly performance report comparing your showing rate and inquiry volume to market average for comparable properties.</td>
+            <td>You know whether you're on track before it becomes a problem.</td>
+          </tr>
+          <tr>
+            <td>Days 14–21<br>No offers</td>
+            <td>Proactive pricing analysis. "Here is where you are vs. the market. Here is what a 4% reduction would likely do to your days-on-market."</td>
+            <td>Ellis gives you the data when it's still early enough to act on it.</td>
+          </tr>
+          <tr>
+            <td>Days 30–45<br>No offers</td>
+            <td>Path migration options, surfaced as intelligence — not failure. Three clear next moves with projected outcomes for each.</td>
+            <td>A stale listing isn't a dead end. It's a signal that one of the other paths is now a better fit.</td>
+          </tr>
+          <tr>
+            <td>Day 60+</td>
+            <td>With your consent, Ellis introduces you to qualified local investors who have been notified your property is available. Your documented market exposure is included in the introduction.</td>
+            <td>Your urgency is now real, documented, and more bankable than any scraped lead list. Investors take it seriously.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="background: var(--navy); color: var(--white);">
+  <div class="container text-center">
+    <h2 class="display display-lg" style="color: var(--white);" data-reveal>Ready to see what Ellis says about your home?</h2>
+    <p class="lead mt-16" style="color: rgba(255,255,255,0.65); max-width: 480px; margin: 16px auto 40px;" data-reveal data-delay="100">Join the waitlist. Ellis launches in Florida first.</p>
+    <a href="index.html#waitlist" class="btn btn--primary btn--lg" data-reveal data-delay="200">Join the Waitlist →</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo">Ellis<span>.</span></div>
+        <div class="footer__tagline">The moment everything becomes clear.</div>
+        <p style="font-size: 13px; line-height: 1.6;">An AI-powered home selling platform and licensed real estate brokerage. Honest data. Every option. No agenda.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Platform</h4>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="how-it-works.html#paths">The Five Paths</a>
+        <a href="index.html#waitlist">Early Access</a>
+      </div>
+      <div class="footer__col">
+        <h4>Partners</h4>
+        <a href="for-investors.html">For Investors</a>
+        <a href="for-agents.html">For Agents</a>
+      </div>
+      <div class="footer__col">
+        <h4>Company</h4>
+        <a href="contact.html">Contact</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Licensing</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Ellis. Licensed Real Estate Brokerage. All rights reserved.</span>
+      <div style="display: flex; gap: 24px;"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

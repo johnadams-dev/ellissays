@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Ellis</title>
+  <meta name="description" content="Get in touch with Ellis. Whether you're a homeowner, investor, or agent partner — we'd love to hear from you.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .contact-item {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .contact-item:last-child { border-bottom: none; }
+    .contact-item__label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-light); margin-bottom: 6px; }
+    .contact-item__value { font-size: 16px; color: var(--navy); font-weight: 400; }
+    .contact-item__value a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+    .contact-item__sub { font-size: 13px; color: var(--text-light); margin-top: 4px; }
+
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="../index.html" class="nav__logo">Ellis<span>.</span></a>
+    <div class="nav__links">
+      <a href="../index.html">Home</a>
+      <a href="how-it-works.html">How It Works</a>
+      <a href="for-investors.html">For Investors</a>
+      <a href="for-agents.html">For Agents</a>
+      <a href="contact.html" class="active">Contact</a>
+    </div>
+    <a href="../index.html#waitlist" class="nav__cta">Get Early Access</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <span class="overline">Get in Touch</span>
+    <h1 class="display display-lg mt-16">Ellis is listening.</h1>
+    <p class="lead">Questions about the platform, investor subscriptions, agent partnerships, or something else entirely — reach out.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-grid">
+      <div data-reveal>
+        <div class="contact-item">
+          <div class="contact-item__label">General inquiries</div>
+          <div class="contact-item__value"><a href="mailto:hello@ellissays.com">hello@ellissays.com</a></div>
+          <div class="contact-item__sub">Homeowner questions, platform information</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item__label">Investor subscriptions</div>
+          <div class="contact-item__value"><a href="mailto:investors@ellissays.com">investors@ellissays.com</a></div>
+          <div class="contact-item__sub">Subscription tiers, zip code availability, early access</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item__label">Agent partnerships</div>
+          <div class="contact-item__value"><a href="mailto:agents@ellissays.com">agents@ellissays.com</a></div>
+          <div class="contact-item__sub">Referral network, partner program details</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item__label">Press &amp; media</div>
+          <div class="contact-item__value"><a href="mailto:press@ellissays.com">press@ellissays.com</a></div>
+          <div class="contact-item__sub">Media inquiries and background information</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item__label">Headquarters</div>
+          <div class="contact-item__value">Daytona Beach, Florida</div>
+          <div class="contact-item__sub">Launching in Florida first · National expansion planned</div>
+        </div>
+        <div class="mt-32">
+          <p class="pull-quote" style="font-size: 20px;">
+            "The moment everything becomes clear."
+          </p>
+        </div>
+      </div>
+
+      <div data-reveal data-delay="150">
+        <div class="card" style="padding: 44px;">
+          <h2 style="font-size: 22px; font-weight: 500; color: var(--navy); margin-bottom: 8px;">Send us a message.</h2>
+          <p class="caption mb-32">We read every message and respond within one business day.</p>
+          <form id="contact-form" novalidate>
+            <div class="form-row mb-16">
+              <div class="form-group">
+                <label for="ct-name">Your name</label>
+                <input id="ct-name" name="name" type="text" class="form-input" placeholder="First and last name" required>
+              </div>
+              <div class="form-group">
+                <label for="ct-email">Email address</label>
+                <input id="ct-email" name="email" type="email" class="form-input" placeholder="you@example.com" required>
+              </div>
+            </div>
+            <div class="form-group mb-16">
+              <label for="ct-role">I am a...</label>
+              <select id="ct-role" name="role" class="form-input form-select">
+                <option value="">Select one</option>
+                <option value="homeowner">Homeowner planning to sell</option>
+                <option value="investor">Real estate investor / flipper</option>
+                <option value="agent">Real estate agent</option>
+                <option value="press">Press / media</option>
+                <option value="other">Something else</option>
+              </select>
+            </div>
+            <div class="form-group mb-16">
+              <label for="ct-subject">Subject</label>
+              <input id="ct-subject" name="subject" type="text" class="form-input" placeholder="What's on your mind?">
+            </div>
+            <div class="form-group mb-24">
+              <label for="ct-message">Message</label>
+              <textarea id="ct-message" name="message" class="form-input" rows="5" placeholder="Tell us more..." style="resize: vertical; font-family: var(--font-body);"></textarea>
+            </div>
+            <button type="submit" class="btn btn--navy btn--lg w-full">Send Message →</button>
+          </form>
+          <div class="success-msg" id="contact-success">
+            ✓ &nbsp;Message received. We'll be back in touch within one business day.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quick links -->
+<section class="section section--sand">
+  <div class="container">
+    <div class="text-center mb-40" data-reveal>
+      <span class="overline">Quick Links</span>
+      <h2 class="display display-sm mt-12">Looking for something specific?</h2>
+    </div>
+    <div class="grid-3" data-reveal data-delay="100">
+      <a href="../index.html#waitlist" class="card" style="text-decoration: none; text-align: center;">
+        <div style="font-size: 32px; margin-bottom: 12px;">✉</div>
+        <div class="card__title">Join the Homeowner Waitlist</div>
+        <p class="card__body">Be first to know when Ellis launches in your market.</p>
+      </a>
+      <a href="for-investors.html#investor-signup" class="card" style="text-decoration: none; text-align: center;">
+        <div style="font-size: 32px; margin-bottom: 12px;">📍</div>
+        <div class="card__title">Reserve Your Zip Codes</div>
+        <p class="card__body">Lock in exclusive zip codes before the investor network fills up.</p>
+      </a>
+      <a href="for-agents.html#agent-signup" class="card" style="text-decoration: none; text-align: center;">
+        <div style="font-size: 32px; margin-bottom: 12px;">🤝</div>
+        <div class="card__title">Join the Agent Network</div>
+        <p class="card__body">Get priority matching when Ellis launches in Florida.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo">Ellis<span>.</span></div>
+        <div class="footer__tagline">The moment everything becomes clear.</div>
+        <p style="font-size: 13px; line-height: 1.6;">An AI-powered home selling platform and licensed real estate brokerage.</p>
+      </div>
+      <div class="footer__col"><h4>Platform</h4><a href="how-it-works.html">How It Works</a><a href="../index.html#waitlist">Early Access</a></div>
+      <div class="footer__col"><h4>Partners</h4><a href="for-investors.html">For Investors</a><a href="for-agents.html">For Agents</a></div>
+      <div class="footer__col"><h4>Company</h4><a href="contact.html">Contact</a><a href="#">Privacy</a><a href="#">Licensing</a></div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Ellis. Licensed Real Estate Brokerage. All rights reserved.</span>
+      <div style="display: flex; gap: 24px;"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
