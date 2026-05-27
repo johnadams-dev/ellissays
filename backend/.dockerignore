@@ -1,0 +1,13 @@
+# Keep the Docker image lean — exclude everything not needed at runtime
+
+node_modules
+npm-debug.log
+.env
+.env.*
+!.env.example
+.git
+.gitignore
+README.md
+tests/
+*.test.js
+.DS_Store
