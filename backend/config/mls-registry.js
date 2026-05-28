@@ -25,8 +25,8 @@ export const MLS_REGISTRY = [
     name: 'Stellar MLS',
     coverage: 'Central Florida — Orlando metro, Tampa Bay, and surrounding regions',
     counties: [
-      'Orange', 'Osceola', 'Seminole', 'Lake', 'Polk', 'Volusia',
-      'Brevard', 'Hillsborough', 'Pinellas', 'Pasco', 'Hernando',
+      'Orange', 'Osceola', 'Seminole', 'Lake', 'Polk', 'Volusia', 'Flagler',
+      'Hillsborough', 'Pinellas', 'Pasco', 'Hernando',
       'Citrus', 'Marion', 'Sumter', 'Alachua',
     ],
   },
@@ -35,34 +35,10 @@ export const MLS_REGISTRY = [
   {
     id: 'daytona',
     platform: PLATFORMS.SPARK,
-    datasetKey: 'DMAR',
-    name: 'Daytona Beach Area Association of Realtors MLS',
-    coverage: 'Daytona Beach and Volusia County',
-    counties: ['Volusia', 'Flagler'],
-  },
-  {
-    id: 'beaches',
-    platform: PLATFORMS.SPARK,
-    datasetKey: 'BMLS',
-    name: 'Beaches MLS',
-    coverage: 'Palm Beach, Broward, and Martin counties',
-    counties: ['Palm Beach', 'Broward', 'Martin'],
-  },
-  {
-    id: 'naples',
-    platform: PLATFORMS.SPARK,
-    datasetKey: 'NABOR',
-    name: 'Naples Area Board of Realtors MLS',
-    coverage: 'Collier County and Naples area',
-    counties: ['Collier'],
-  },
-  {
-    id: 'tallahassee',
-    platform: PLATFORMS.SPARK,
-    datasetKey: 'TALR',
-    name: 'Tallahassee Board of Realtors MLS',
-    coverage: 'Tallahassee and Leon County',
-    counties: ['Leon', 'Jefferson', 'Wakulla', 'Gadsden'],
+    datasetKey: 'DBAR',
+    name: 'Daytona Beach Area Realtors MLS',
+    coverage: 'Volusia County (Daytona Beach area)',
+    counties: ['Volusia'],
   },
   {
     id: 'spacecoast',
@@ -85,7 +61,7 @@ export const MLS_REGISTRY = [
     platform: PLATFORMS.SPARK,
     datasetKey: 'PPAR',
     name: 'Pensacola Association of Realtors MLS',
-    coverage: 'Escambia, Santa Rosa, and Okaloosa counties',
+    coverage: 'Escambia, Santa Rosa, Okaloosa, and Walton counties',
     counties: ['Escambia', 'Santa Rosa', 'Okaloosa', 'Walton'],
   },
   {
@@ -109,33 +85,22 @@ export const MLS_REGISTRY = [
     platform: PLATFORMS.SPARK,
     datasetKey: 'NEFMLS',
     name: 'Northeast Florida MLS (Jacksonville)',
-    coverage: 'Duval, St. Johns, Nassau, Clay, Putnam counties',
+    coverage: 'Duval, St. Johns, Nassau, Clay, Putnam, Baker counties',
     counties: ['Duval', 'St. Johns', 'Nassau', 'Clay', 'Putnam', 'Baker'],
   },
   {
-    id: 'newsmyrna',
+    id: 'naples',
     platform: PLATFORMS.SPARK,
-    datasetKey: 'NSBAR',
-    name: 'New Smyrna Beach Board of Realtors MLS',
-    coverage: 'New Smyrna Beach and southern Volusia County',
-    counties: ['Volusia'],
+    datasetKey: 'NABOR',
+    name: 'Naples Area Board of Realtors MLS',
+    coverage: 'Collier County and Naples area',
+    counties: ['Collier'],
   },
-  {
-    id: 'flagler',
-    platform: PLATFORMS.SPARK,
-    datasetKey: 'NAVICA',
-    name: 'Navica Flagler MLS',
-    coverage: 'Flagler County (Palm Coast area)',
-    counties: ['Flagler'],
-  },
-  {
-    id: 'miami',
-    platform: PLATFORMS.SPARK,
-    datasetKey: 'MIAMI',
-    name: 'Miami Association of Realtors MLS (MIAMI MLS)',
-    coverage: 'Miami-Dade, Broward, and Monroe counties',
-    counties: ['Miami-Dade', 'Broward', 'Monroe'],
-  },
+
+  // ── Pending access / not yet wired ──────────────────────────────────────
+  // Miami (Bridge) — approved, dataset key TBC
+  // Beaches MLS    — merging into Miami dataset, TBC
+  // Tallahassee    — uses Paragon (Black Knight), no client yet; Leon/Gadsden/Jefferson/Wakulla unsupported
 ];
 
 // ── Lookup helpers ────────────────────────────────────────────────────────────
