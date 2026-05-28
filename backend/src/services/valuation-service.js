@@ -57,7 +57,7 @@ export async function getValuationPanel(address) {
   const sources = buildValuationSources(zestimate, compAvm, publicRecord);
 
   // Calculate Ellis blended range
-  const elliRange = buildEllisRange(sources);
+  const ellisRange = buildEllisRange(sources);
 
   return {
     address: {
