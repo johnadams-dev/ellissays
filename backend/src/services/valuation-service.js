@@ -41,10 +41,17 @@ export async function getValuationPanel(address) {
       fetchPropertyListing(address, mlsEntry),
     ]);
 
+  if (zestimateResult.status    === 'rejected') console.error('[valuation] zestimate failed:',     zestimateResult.reason?.message);
+  if (compsResult.status        === 'rejected') console.error('[valuation] comps failed:',         compsResult.reason?.message);
+  if (publicRecordResult.status === 'rejected') console.error('[valuation] publicRecord failed:',  publicRecordResult.reason?.message);
+  if (propertyResult.status     === 'rejected') console.error('[valuation] listing failed:',       propertyResult.reason?.message);
+
   const zestimate    = zestimateResult.status    === 'fulfilled' ? zestimateResult.value    : null;
   const comps        = compsResult.status        === 'fulfilled' ? compsResult.value        : [];
   const publicRecord = publicRecordResult.status === 'fulfilled' ? publicRecordResult.value : null;
   const listing      = propertyResult.status     === 'fulfilled' ? propertyResult.value     : null;
+
+  console.log('[valuation] sources resolved — zestimate:', !!zestimate, '| comps:', comps.length, '| publicRecord:', !!publicRecord, '| listing:', !!listing);
 
   // Build property facts (merge listing + public record)
   const propertyFacts = buildPropertyFacts(listing, publicRecord);
